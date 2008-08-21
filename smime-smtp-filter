@@ -1,0 +1,104 @@
+#!/usr/bin/python
+
+"""An smime signing filter to be used with proxsmtp
+
+Usage: %(program)s --keyfile file.pam
+
+Options:
+
+    --keyfile file.pam
+    -k file.pam
+        Loads the key and certificate from the given file.
+
+If localhost is not given then `localhost' is used, and if localport is not
+given then 8025 is used.  If remotehost is not given then `localhost' is used,
+and if remoteport is not given, then 25 is used.
+"""
+
+import getopt, sys
+
+from M2Crypto import BIO, SMIME, X509
+
+program = sys.argv[0]
+
+
+def usage(code, msg=''):
+    print >> sys.stderr, __doc__ % globals()
+    if msg:
+        print >> sys.stderr, msg
+    sys.exit(code)
+
+
+class Options:
+    keyfile = None
+    randpool = None
+
+def parseargs():
+    global DEBUGSTREAM
+    try:
+        opts, args = getopt.getopt(
+	    sys.argv[1:], 'k:r:',
+            ['keyfile=', 'randpool='])
+    except getopt.error, e:
+        usage(1, e)
+
+    options = Options()
+    for opt, arg in opts:
+        if opt in ('-h', '--help'):
+            usage(0)
+        elif opt in ('-V', '--version'):
+            print >> sys.stderr, __version__
+            sys.exit(0)
+        elif opt in ('-k', '--keyfile'):
+            options.keyfile = arg
+        elif opt in ('-d', '--debug'):
+            DEBUGSTREAM = sys.stderr
+
+    if options.keyfile is None:
+	usage(1, 'Missing required parameter: keyfile')
+
+    return options
+
+if __name__ == '__main__':
+    options = parseargs()
+
+    header = ""
+    body = ""
+    for line in sys.stdin:
+	if line == '\r\n':
+	    break
+
+	# some headers have to be moved to the body or stripped
+	if   line.lower().startswith(("content-type: ",
+				      "content-transfer-encoding: ")):
+	    body += line
+	elif line.lower().startswith("mime-version: "):
+	    pass
+	else:
+	    header += line
+
+    if body != "":
+	body += "\r\n"
+
+    for line in sys.stdin:
+	body += line
+
+    msg_bio = BIO.MemoryBuffer(body) 
+    s = SMIME.SMIME()
+
+    s.load_key(options.keyfile)
+    #p7 = s.sign(msg_bio, flags=SMIME.PKCS7_TEXT)
+    p7 = s.sign(msg_bio)
+    
+    msg_bio = BIO.MemoryBuffer(body) 
+    out = BIO.MemoryBuffer()
+    s.write(out, p7, msg_bio) #, SMIME.PKCS7_TEXT)
+
+    sys.stdout.write(header)
+    # Convert all line endings to \r\n
+    for line in out.read().splitlines():
+	sys.stdout.write(line)
+	sys.stdout.write('\r\n')
+
+
+
