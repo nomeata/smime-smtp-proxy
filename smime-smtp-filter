@@ -29,10 +29,6 @@ Options:
     --keyfile file.pam
     -k file.pam
         Loads the key and certificate from the given file.
-
-If localhost is not given then `localhost' is used, and if localport is not
-given then 8025 is used.  If remotehost is not given then `localhost' is used,
-and if remoteport is not given, then 25 is used.
 """
 
 import getopt, sys
