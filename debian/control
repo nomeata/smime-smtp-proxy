@@ -7,6 +7,6 @@ Standards-Version: 3.8.0
 
 Package: smime-smtp-proxy
 Architecture: all
-Depends: proxsmtp, python-m2crypto
+Depends: proxsmtp, ${python:Depends}, python-m2crypto
 Description: SMTP Proxy to sign e-mail using S/MIME
  TODO
