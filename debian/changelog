@@ -1,4 +1,4 @@
-smime-smpt-proxy (0.1) UNRELEASED; urgency=low
+smime-smtp-proxy (0.1) UNRELEASED; urgency=low
 
   * Initial package
 
