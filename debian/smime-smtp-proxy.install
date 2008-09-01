@@ -1,0 +1,2 @@
+smime-smtp-filter /usr/bin
+key.pem /etc/smime-smtp-proxy

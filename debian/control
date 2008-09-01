@@ -1,0 +1,12 @@
+Source: smime-smtp-proxy
+Section: admin
+Priority: optional
+Maintainer: Joachim Breitner <nomeata@debian.org>
+Build-Depends: debhelper (>= 7.0.0)
+Standards-Version: 3.8.0
+
+Package: smime-smtp-proxy
+Architecture: all
+Depends: proxsmtp, python-m2crypto
+Description: SMTP Proxy to sign e-mail using S/MIME
+ TODO
