@@ -1,0 +1,58 @@
+#! /bin/sh -e
+### BEGIN INIT INFO
+# Provides:             smime-smtp-proxy
+# Required-Start:       $syslog $network
+# Required-Stop:        $syslog $network
+# Default-Start:        2 3 4 5
+# Default-Stop:         0 1 6
+# Short-Description:    Start the smime-smtp-proxy
+# Description:          Start the S/MIME signing SMTP proxy daemon
+### END INIT INFO
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+NAME=smime-smtp-proxy
+DAEMON=/usr/sbin/proxsmtpd
+CONFIG=/etc/smime-smtp-proxy/proxsmtp.conf
+PID=/var/run/smime-smtp-proxy.pid
+
+ . /lib/lsb/init-functions
+
+# Gracefully exit if the package has been removed.
+test -x $DAEMON || exit 0
+test -x /usr/bin/smime-smtp-filter || exit 0
+
+
+d_start() {
+    start_daemon -p $PID $DAEMON -p $PID -f $CONFIG
+}
+
+d_stop() {
+    killproc -p $PID `basename $DAEMON`
+}
+
+case "$1" in
+    start)
+    	log_daemon_msg "Starting S/MIME SMTP proxy" "$NAME"
+        d_start
+        log_end_msg 0
+	;;
+    stop)
+    	log_daemon_msg "Stopping S/MIME SMTP proxy" "$NAME"
+        d_stop
+        log_end_msg 0
+        ;;
+    force-reload|restart)
+    	log_daemon_msg "Stopping S/MIME SMTP proxy" "$NAME"
+        d_stop
+        log_end_msg 0
+    	log_daemon_msg "Starting S/MIME SMTP proxy" "$NAME"
+        d_start
+        log_end_msg 0
+	;;
+    *)
+	echo "Usage: $0 {start|stop|restart|force-reload}" >&2
+	exit 1
+	;;
+esac
+
+exit 0

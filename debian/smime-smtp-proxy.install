@@ -1,2 +1,3 @@
 smime-smtp-filter /usr/bin
 key.pem /etc/smime-smtp-proxy
+proxsmtp.conf /etc/smime-smtp-proxy
