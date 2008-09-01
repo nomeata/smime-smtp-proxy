@@ -1,5 +1,5 @@
-smime-smtp-proxy (0.1) UNRELEASED; urgency=low
+smime-smtp-proxy (0.1) itomig; urgency=low
 
   * Initial package
 
- -- Joachim Breitner <nomeata@debian.org>  Mon, 01 Sep 2008 15:01:46 +0200
+ -- Joachim Breitner <nomeata@debian.org>  Mon, 01 Sep 2008 17:20:23 +0200
