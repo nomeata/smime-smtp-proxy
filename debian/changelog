@@ -1,3 +1,9 @@
+smime-smtp-proxy (0.2) itomig; urgency=low
+
+  * Include a README file
+
+ -- Joachim Breitner <nomeata@debian.org>  Wed, 03 Sep 2008 17:14:39 +0200
+
 smime-smtp-proxy (0.1) itomig; urgency=low
 
   * Initial package
