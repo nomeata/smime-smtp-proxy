@@ -1,0 +1,57 @@
+smime-smtp-proxy
+================
+
+About
+-----
+
+The smime-smtp-proxy is a small daemon that accepts SMTP connections,
+accepts incoming mail, digitally signs it using an S/MIME key and
+certificate and forwards it to another SMTP server.
+
+Warning
+-------
+
+Please be aware of the security implications of an signing SMTP proxy:
+
+ * Make sure to not create an open relay if the machine is reachable from
+   the internet.
+ * Make sure the signing key on the host and the host itself is secured
+   appropriately.
+ * Make sure that automatic mail signatures are what you need.
+
+Installation and setup
+----------------------
+
+Please install this software using the packages provided by your
+distribution. If you read this file in /usr/share/doc/smime-smtp-proxy/,
+then you already have installed the package properly.
+
+The configuration requires changing two files:
+
+ * /etc/smime-smtp-proxy/proxsmtp.conf
+   This file is a proxsmtp configuraiton file. For a detailed description
+   of the configuratoin parameters, see the manpage proxsmtpd.conf(5).
+   You do not need to change the FilterType and FilterCommand parameters.
+  
+   For a quick start:
+    + set the OutAddress to the IP adress and port of the server the mail
+      should be forwarded to.
+    + adjust the Listen parameter if you only want to receive mail at a
+      specific IP address, or change the port it should listen on.
+
+ * /etc/smime-smtp-proxy/key.pem
+   This file contains the key and certificate you want to use, in .pem
+   format. The program ships with a dummy file that should not be used in a
+   productive server.
+  
+   This file should be made read-only by the user root if unpriviliged
+   users have access to the machine.
+
+
+Author
+------
+
+© 2008 Joachim Breitner <joachim.breitner@itomig.de>
+
+smime-smtp-proxy development was sponsored by the City of Böblingen. It is
+licenced under the European Union Public Licence, see COPYING.pdf.
