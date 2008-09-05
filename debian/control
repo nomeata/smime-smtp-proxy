@@ -9,4 +9,6 @@ Package: smime-smtp-proxy
 Architecture: all
 Depends: proxsmtp, ${python:Depends}, python-m2crypto
 Description: SMTP Proxy to sign e-mail using S/MIME
- TODO
+ The smime-smtp-proxy is a small daemon that accepts SMTP connections,
+ accepts incoming mail, digitally signs it using an S/MIME key and
+ certificate and forwards it to another SMTP server.

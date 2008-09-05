@@ -1,3 +1,9 @@
+smime-smtp-proxy (0.4) UNRELEASED; urgency=low
+
+  * add description to the package control file
+
+ -- Joachim Breitner <joachim.breitner@itomig.de>  Fri, 05 Sep 2008 16:41:00 +0200
+
 smime-smtp-proxy (0.3) itomig; urgency=low
 
   * Change maintainer address
