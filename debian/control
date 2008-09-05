@@ -1,7 +1,7 @@
 Source: smime-smtp-proxy
 Section: admin
 Priority: optional
-Maintainer: Joachim Breitner <nomeata@debian.org>
+Maintainer: Joachim Breitner <joachim.breitner@itomig.de>
 Build-Depends: debhelper (>= 7.0.0)
 Standards-Version: 3.8.0
 

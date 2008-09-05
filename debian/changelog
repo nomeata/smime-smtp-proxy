@@ -1,11 +1,17 @@
+smime-smtp-proxy (0.3) itomig; urgency=low
+
+  * Change maintainer address
+
+ -- Joachim Breitner <joachim.breitner@itomig.de>  Fri, 05 Sep 2008 16:14:58 +0200
+
 smime-smtp-proxy (0.2) itomig; urgency=low
 
   * Include a README file
 
- -- Joachim Breitner <nomeata@debian.org>  Wed, 03 Sep 2008 17:14:39 +0200
+ -- Joachim Breitner <joachim.breitner@itomig.de>  Wed, 03 Sep 2008 17:14:39 +0200
 
 smime-smtp-proxy (0.1) itomig; urgency=low
 
   * Initial package
 
- -- Joachim Breitner <nomeata@debian.org>  Mon, 01 Sep 2008 17:20:23 +0200
+ -- Joachim Breitner <joachim.breitner@itomig.de>  Mon, 01 Sep 2008 17:20:23 +0200
