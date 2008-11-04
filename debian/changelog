@@ -1,8 +1,9 @@
-smime-smtp-proxy (0.4) UNRELEASED; urgency=low
+smime-smtp-proxy (0.4) itomig; urgency=low
 
   * add description to the package control file
+  * Add encoding information in python file
 
- -- Joachim Breitner <joachim.breitner@itomig.de>  Fri, 05 Sep 2008 16:41:00 +0200
+ -- Joachim Breitner <joachim.breitner@itomig.de>  Tue, 04 Nov 2008 21:34:10 +0100
 
 smime-smtp-proxy (0.3) itomig; urgency=low
 
