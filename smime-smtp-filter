@@ -38,13 +38,11 @@ from M2Crypto import BIO, SMIME, X509
 
 program = sys.argv[0]
 
-
 def usage(code, msg=''):
     print >> sys.stderr, __doc__ % globals()
     if msg:
         print >> sys.stderr, msg
     sys.exit(code)
-
 
 class Options:
     keyfile = None
@@ -54,7 +52,7 @@ def parseargs():
     global DEBUGSTREAM
     try:
         opts, args = getopt.getopt(
-	    sys.argv[1:], 'k:r:',
+            sys.argv[1:], 'k:r:',
             ['keyfile=', 'randpool='])
     except getopt.error, e:
         usage(1, e)
@@ -72,7 +70,7 @@ def parseargs():
             DEBUGSTREAM = sys.stderr
 
     if options.keyfile is None:
-	usage(1, 'Missing required parameter: keyfile')
+        usage(1, 'Missing required parameter: keyfile')
 
     return options
 
@@ -81,24 +79,37 @@ if __name__ == '__main__':
 
     header = ""
     body = ""
+    last_header_to = "header"
     for line in sys.stdin:
-	if line == '\r\n':
-	    break
+        if line[0] == '\t':
+            # header continuation (rfc2822)
+            if last_header_to == "header":
+                header += line    
+            elif last_header_to == "nothing":
+                pass
+            elif last_header_to == "body":
+                body += line
 
-	# some headers have to be moved to the body or stripped
-	if   line.lower().startswith(("content-type: ",
-				      "content-transfer-encoding: ")):
-	    body += line
-	elif line.lower().startswith("mime-version: "):
-	    pass
-	else:
-	    header += line
+        elif line == '\r\n':
+            break
+
+        # some headers have to be moved to the body or stripped
+        elif   line.lower().startswith(("content-type: ",
+                                      "content-transfer-encoding: ")):
+            last_header_to = "body"
+            body += line
+        elif line.lower().startswith("mime-version: "):
+            last_header_to = "nothing"
+            pass
+        else:
+            last_header_to = "header"
+            header += line
 
     if body != "":
-	body += "\r\n"
+        body += "\r\n"
 
     for line in sys.stdin:
-	body += line
+        body += line
 
     msg_bio = BIO.MemoryBuffer(body) 
     s = SMIME.SMIME()
@@ -114,8 +125,8 @@ if __name__ == '__main__':
     sys.stdout.write(header)
     # Convert all line endings to \r\n
     for line in out.read().splitlines():
-	sys.stdout.write(line)
-	sys.stdout.write('\r\n')
+        sys.stdout.write(line)
+        sys.stdout.write('\r\n')
 
 
 
