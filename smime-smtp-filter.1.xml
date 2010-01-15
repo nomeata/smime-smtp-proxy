@@ -10,7 +10,7 @@
       -''-param man.charmap.use.subset "0" \
       -''-param make.year.ranges "1" \
       -''-param make.single.year.ranges "1" \
-      manpage.xml'                                               -->
+      smime-smtp-filter.1.xml'                                               -->
 
   <!-- Fill in your name for FIRSTNAME and SURNAME.              -->
   <!ENTITY dhfirstname "Joachim">
@@ -64,6 +64,7 @@
                 <copyright>
                         <year>2008</year>
                         <year>2009</year>
+                        <year>2010</year>
                         <holder>&dhusername;</holder>
                 </copyright>
         </refentryinfo>
