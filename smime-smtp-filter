@@ -23,12 +23,12 @@
 
 """An smime signing filter to be used with proxsmtp
 
-Usage: %(program)s --keyfile file.pam
+Usage: %(program)s --keyfile file.pem
 
 Options:
 
-    --keyfile file.pam
-    -k file.pam
+    --keyfile file.pem
+    -k file.pem
         Loads the key and certificate from the given file.
 
     -h, --help
