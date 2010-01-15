@@ -30,6 +30,12 @@ Options:
     --keyfile file.pam
     -k file.pam
         Loads the key and certificate from the given file.
+
+    -h, --help
+        Displays this help message
+
+    -v, --version
+        Displays the program version
 """
 
 import getopt, sys
@@ -46,14 +52,13 @@ def usage(code, msg=''):
 
 class Options:
     keyfile = None
-    randpool = None
 
 def parseargs():
     global DEBUGSTREAM
     try:
         opts, args = getopt.getopt(
-            sys.argv[1:], 'k:r:',
-            ['keyfile=', 'randpool='])
+            sys.argv[1:], 'k:',
+            ['keyfile='])
     except getopt.error, e:
         usage(1, e)
 
