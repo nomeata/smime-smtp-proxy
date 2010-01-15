@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-stylesheet type="text/xsl"
+        href="http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+        "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+
+<!-- Process this file with an XSLT processor, e.g. xsltproc:    -->
+<!-- `xsltproc \
+      -''-nonet \
+      -''-param man.charmap.use.subset "0" \
+      -''-param make.year.ranges "1" \
+      -''-param make.single.year.ranges "1" \
+      manpage.xml'                                               -->
+
+  <!-- Fill in your name for FIRSTNAME and SURNAME.              -->
+  <!ENTITY dhfirstname "Joachim">
+  <!ENTITY dhsurname   "Breitner">
+  <!ENTITY dhemail     "joachim.breitner@itomig.de">
+  <!-- dhusername could also be set to "&firstname; &surname;".  -->
+  <!ENTITY dhusername  "&dhfirstname; &dhsurname;">
+
+  <!-- The version information can also be suppressed (just      -->
+  <!-- remove it or comment it out.                              -->
+  <!-- <!ENTITY dhrelease   "0.1.2"> -->
+
+  <!-- TITLE should be something like "User commands",           -->
+  <!-- "&dhpackage; command-line reference" or similar (see e.g. -->
+  <!-- http://www.tldp.org/HOWTO/Man-Page/q2.html). But limit    -->
+  <!-- the length to 30 chars.                                   -->
+  <!ENTITY dhtitle     "User Manuals">
+  
+  <!-- This is the application/package name.                     -->
+  <!ENTITY dhucpackage "SMIME-SMTP-FILTER">
+  <!ENTITY dhpackage   "smime-smtp-filter">
+
+  <!-- If the application e.g. belongs to a package like X.org,  -->
+  <!-- this should be set to the package/suite name instead of   -->
+  <!-- dhpackage.                                                -->
+  <!ENTITY dhproduct   "&dhpackage;">
+
+  <!-- SECTION should be 1-8, maybe w/ subsection other          -->
+  <!-- parameters are allowed: see man(7), man(1) and            -->
+  <!-- http://www.tldp.org/HOWTO/Man-Page/q2.html.               -->
+  <!ENTITY dhsection   "1">
+
+]>
+
+<refentry>
+        <refentryinfo>
+                <title>&dhtitle;</title>
+                <!-- Better put a suite name instead of &dhpackage; into productname -->
+                <productname>&dhproduct;</productname>
+                <!-- <releaseinfo role="version">&dhrelease;</releaseinfo> -->
+                <authorgroup>
+                        <author>
+                                <firstname>&dhfirstname;</firstname>
+                                <surname>&dhsurname;</surname>
+                                <contrib>Original author of smime-smtp-proxy.</contrib>
+                                <address>
+                                        <email>&dhemail;</email>
+                                </address>
+                        </author>
+                </authorgroup>
+                <copyright>
+                        <year>2008</year>
+                        <year>2009</year>
+                        <holder>&dhusername;</holder>
+                </copyright>
+        </refentryinfo>
+        <refmeta>
+                <refentrytitle>&dhucpackage;</refentrytitle>
+                <manvolnum>&dhsection;</manvolnum>
+        </refmeta>
+        <refnamediv>
+                <refname>&dhpackage;</refname>
+                <refpurpose>digitally signs outgoing e-mail messages</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+                <cmdsynopsis>
+                        <command>&dhpackage;</command>
+                        <group choice="req">
+                                <arg choice="plain"><option>-k <replaceable>file.pem</replaceable></option></arg>
+                                <arg choice="plain"><option>--keyfile <replaceable>file.pem</replaceable></option></arg>
+                        </group>
+                </cmdsynopsis>
+                <cmdsynopsis>
+                        <command>&dhpackage;</command>
+      <!-- Normally the help and version options make the programs stop
+                             right after outputting the requested information. -->
+			<group choice="req">
+				<arg choice="plain"><option>-h</option></arg>
+				<arg choice="plain"><option>--help</option></arg>
+			</group>
+                </cmdsynopsis>
+        </refsynopsisdiv>
+        <refsect1 id="description">
+                <title>DESCRIPTION</title>
+                <para><command>&dhpackage;</command> reads an e-mail message from the standard input, signs it using the given S/MIME key, and passes it to standard output. It is meant to be useed as a filter for <citerefentry><refentrytitle>proxsmtp</refentrytitle><manvolnum>8</manvolnum></citerefentry>. </para>
+        </refsect1>
+        <refsect1 id="options">
+                <title>OPTIONS</title>
+                <variablelist>
+                        <!-- Use the variablelist.term.separator and the
+                             variablelist.term.break.after parameters to
+                             control the term elements. -->
+                        <varlistentry>
+                                <term><option>-k <replaceable class="parameter">file.pem</replaceable></option></term>
+                                <term><option>--keyfile <replaceable class="parameter">file.pem</replaceable></option></term>
+                                <listitem>
+                                        <para>Required. PEM certificate to use to sign the e-mail messages.</para>
+                                </listitem>
+                        </varlistentry>
+                </variablelist>
+        </refsect1>
+        <refsect1 id="see_also">
+                <title>SEE ALSO</title>
+                <!-- In alpabetical order. -->
+                <para><citerefentry>
+                                <refentrytitle>proxsmtp</refentrytitle>
+                                <manvolnum>8</manvolnum>
+                        </citerefentry></para>
+        </refsect1>
+</refentry>
